@@ -1,0 +1,10 @@
+*.lib
+*.dll
+*.exe
+
+vs/Release
+vs/Debug
+vs/vs/Debug
+vs/vs/Release
+
+
