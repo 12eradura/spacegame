@@ -12,21 +12,21 @@ Explosion::Explosion(Game* owner, Vector2f pos, float explosionSize)
 	this->explosionSize = explosionSize;
 	this->elapsedTime = 0.0f;
 
-	Sprite newbie("../../data/Explosion/1.png");
+	Sprite newbie("../data/Explosion/1.png");
 	sprite.push_back(newbie);
-	newbie = Sprite("../../data/Explosion/2.png");
+	newbie = Sprite("../data/Explosion/2.png");
 	sprite.push_back(newbie);
-	newbie = Sprite("../../data/Explosion/3.png");
+	newbie = Sprite("../data/Explosion/3.png");
 	sprite.push_back(newbie);
-	newbie = Sprite("../../data/Explosion/4.png");
+	newbie = Sprite("../data/Explosion/4.png");
 	sprite.push_back(newbie);
-	newbie = Sprite("../../data/Explosion/5.png");
+	newbie = Sprite("../data/Explosion/5.png");
 	sprite.push_back(newbie);
-	newbie = Sprite("../../data/Explosion/6.png");
+	newbie = Sprite("../data/Explosion/6.png");
 	sprite.push_back(newbie);
-	newbie = Sprite("../../data/Explosion/7.png");
+	newbie = Sprite("../data/Explosion/7.png");
 	sprite.push_back(newbie);
-	newbie = Sprite("../../data/Explosion/8.png");
+	newbie = Sprite("../data/Explosion/8.png");
 	sprite.push_back(newbie);
 }
 

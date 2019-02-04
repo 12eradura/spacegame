@@ -28,8 +28,10 @@ GravityObject::GravityObject()
 	this->radius = 0.0f;
 }
 
-GravityObject::GravityObject(Vector2f currPos, Vector2f prevPos, Vector2f acceleration, float mass, float radius, int type, void* ptr)
-: location(type, ptr)
+
+GravityObject::GravityObject(Vector2f currPos, Vector2f prevPos, Vector2f acceleration,
+                             float mass, float radius, int type, void* ptr)
+    : location(type, ptr)
 {
 	this->currPos = currPos;
 	this->prevPos = prevPos;
@@ -38,6 +40,7 @@ GravityObject::GravityObject(Vector2f currPos, Vector2f prevPos, Vector2f accele
 	this->radius = radius;
 }
 
+
 void GravityObject::IntegrateGravityObject(const float dt)
 {
 	Vector2f pos = this->currPos;
@@ -45,20 +48,24 @@ void GravityObject::IntegrateGravityObject(const float dt)
 	this->prevPos = pos;
 }
 
+
 Vector2f GravityObject::GetPos()
 {
 	return this->currPos;
 }
+
 
 float GravityObject::GetRadius()
 {
 	return this->radius;
 }
 
+
 int GravityObject::GetType()
 {
 	return this->location.type;
 }
+
 
 void* GravityObject::GetOwner()
 {
@@ -124,6 +131,7 @@ int GravityObjectSystem::GetGravityObjectIndex(GravityObject* gravityObject)
 	return -1;
 }
 
+
 void GravityObjectSystem::RemoveGravityObject(GravityObject* gravityObject)
 {
 	assert(gravityObject);
@@ -143,6 +151,7 @@ void GravityObjectSystem::RemoveGravityObject(GravityObject* gravityObject)
 	this->gravityObjects[index] = auxPtr;
 	this->gravityObjects.pop_back();
 }
+
 
 void GravityObjectSystem::ForgetGravityObject(GravityObject* gravityObject)
 {
@@ -171,6 +180,7 @@ void GravityObjectSystem::RemoveAllGravityObjects()
 	this->gravityObjects.clear();
 }
 
+
 GravityObject* GravityObjectSystem::AddGravityObject(GravityObject* gravityObject)
 {
 	assert(gravityObject);
@@ -178,13 +188,16 @@ GravityObject* GravityObjectSystem::AddGravityObject(GravityObject* gravityObjec
 	return gravityObject;
 }
 
-GravityObject* GravityObjectSystem::AddGravityObject(Vector2f currPos, Vector2f prevPos, Vector2f acceleration, float mass, float radius, int type, void* ptr)
+
+GravityObject* GravityObjectSystem::AddGravityObject(Vector2f currPos, Vector2f prevPos, Vector2f acceleration,
+                                                     float mass, float radius, int type, void* ptr)
 {
 	assert(ptr);
 	GravityObject* newbie = new GravityObject(currPos, prevPos, acceleration, mass, radius, type, ptr);
 	this->gravityObjects.push_back(newbie);
 	return newbie;
 }
+
 
 GravityObject* GravityObjectSystem::GetGravityObject(const int index)
 {
@@ -221,6 +234,7 @@ void GravityObjectSystem::CalculateAccelereations()
 		gravObjAcceleration = Vector2f(0.0f, 0.0f);
 	}
 }
+
 
 void GravityObjectSystem::IntegrateSystem(const float dt)
 {

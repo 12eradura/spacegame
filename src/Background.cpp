@@ -9,27 +9,27 @@ Background::Background(Game* owner)
 
 	Layer newLayer;
 
-	newLayer.sprite = Sprite("../../data/background/background.png");
+	newLayer.sprite = Sprite("../data/background/background.png");
 	newLayer.offset = 0.2f;
 	newLayer.worldSize = 2048.0f;
 	layers.push_back(newLayer);
 	
-	newLayer.sprite = Sprite("../../data/background/stars4.png");
+	newLayer.sprite = Sprite("../data/background/stars4.png");
 	newLayer.offset = 0.4f;
 	newLayer.worldSize = 2048.0f;
 	layers.push_back(newLayer);
 	
-	newLayer.sprite = Sprite("../../data/background/stars3.png");
+	newLayer.sprite = Sprite("../data/background/stars3.png");
 	newLayer.offset = 0.6f;
 	newLayer.worldSize = 2048.0f;
 	layers.push_back(newLayer);
 
-	newLayer.sprite = Sprite("../../data/background/stars2.png");
+	newLayer.sprite = Sprite("../data/background/stars2.png");
 	newLayer.offset = 0.8f;
 	newLayer.worldSize = 2048.0f;
 	layers.push_back(newLayer);
 
-	newLayer.sprite = Sprite("../../data/background/stars1.png");
+	newLayer.sprite = Sprite("../data/background/stars1.png");
 	newLayer.offset = 1.0f;
 	newLayer.worldSize = 2048.0f;
 	layers.push_back(newLayer);
@@ -39,12 +39,12 @@ Background::Background(Game* owner)
 		this->layers[i].sprite.SetRepeating();
 	}
 
-	this->menuBackground = Sprite("../../data/background/menuBackground.png");
+	this->menuBackground = Sprite("../data/background/menuBackground.png");
 }
 
 void Background::Update(float dt)
 {
-	Camera * camera = owner->GetCamera();
+	Camera* camera = owner->GetCamera();
 	Vector2f cameraFov;
 	cameraFov.x = camera->GetCurrFov();
 	cameraFov.y = cameraFov.x * ((float)owner->GetWindow()->getSize().y / owner->GetWindow()->getSize().x);
@@ -90,7 +90,8 @@ void Background::Update(float dt)
 
 void Background::Draw()
 {
-	if (this->owner->GetGameStatus() == this->owner->MainMenuStatus || this->owner->GetGameStatus() == this->owner->LevelsMenuStatus)
+	if (this->owner->GetGameStatus() == this->owner->MainMenuStatus
+        || this->owner->GetGameStatus() == this->owner->LevelsMenuStatus)
 	{
 		float xTexSize = (float)menuBackground.GetTexture()->getSize().x;
 		float yTexSize = (float)menuBackground.GetTexture()->getSize().y;
@@ -104,7 +105,8 @@ void Background::Draw()
 		menuBackground.DrawBackground(this->owner->GetWindow(), texCoords);
 	}
 
-	else{
+	else
+	{
 		for (size_t i = 0; i < layers.size(); i++)
 		{
 			layers[i].sprite.DrawBackground(owner->GetWindow(), layers[i].texCoords);

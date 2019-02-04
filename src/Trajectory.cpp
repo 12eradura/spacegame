@@ -14,6 +14,7 @@ GravityCollisionHandler::GravityCollisionHandler(TrajectoryComputer* owner)
 	this->owner = owner;
 }
 
+
 void GravityCollisionHandler::OnCollision(GravityObject* gravityObject1, GravityObject* gravityObject2)
 {
 	assert(gravityObject1);
@@ -125,11 +126,11 @@ TrajectoryComputer::TrajectoryComputer(Game* owner)
 : computeSys(&this->gravityCollisionHandler)
 , gravityCollisionHandler(this)
 {
-	Sprite newbie("../../data/Trajectory/blueLine.png");
+	Sprite newbie("../data/Trajectory/blueLine.png");
 	sprites.push_back(newbie);
-	newbie = Sprite("../../data/Trajectory/redLine.png");
+	newbie = Sprite("../data/Trajectory/redLine.png");
 	sprites.push_back(newbie);
-	newbie = Sprite("../../data/Trajectory/greenLine.png");
+	newbie = Sprite("../data/Trajectory/greenLine.png");
 	sprites.push_back(newbie);
 
 	assert(owner);
@@ -139,25 +140,30 @@ TrajectoryComputer::TrajectoryComputer(Game* owner)
 	this->greenIndex = -1;
 }
 
+
 TrajectoryComputer::~TrajectoryComputer()
 {
 	// nothing
 }
+
 
 void TrajectoryComputer::SwitchOff()
 {
 	this->isExist = false;
 }
 
+
 void TrajectoryComputer::Drop()
 {
 	// nothing
 }
 
+
 bool TrajectoryComputer::IsExist()
 {
 	return this->isExist;
 }
+
 
 void TrajectoryComputer::Update(const float dt)
 {
@@ -202,6 +208,7 @@ void TrajectoryComputer::InitializeColors()
 		this->colors.push_back(Color::Green);
 	}
 }
+
 
 void TrajectoryComputer::SetGreenIndex(GravityObject* gravityObject)
 {

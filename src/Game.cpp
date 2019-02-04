@@ -15,6 +15,7 @@ const float dAngle = 0.05f;
 extern const float defFov;
 extern const float gameStatusTimer;
 
+
 // GameObject
 GameObject::~GameObject()
 {
@@ -28,10 +29,12 @@ void Functor::OnCollision(GravityObject* gravityObject1, GravityObject* gravityO
 	// nothing have to do
 }
 
+
 CollisionHandler::CollisionHandler(Game* owner)
 {
 	this->owner = owner;
 }
+
 
 void CollisionHandler::OnCollision(GravityObject* gravityObject1, GravityObject* gravityObject2)
 {
@@ -138,7 +141,7 @@ void CollisionHandler::OnCollision(GravityObject* gravityObject1, GravityObject*
 // Game
 
 Game::Game()
-: window(sf::VideoMode(1366, 768), "space game", sf::Style::Fullscreen)
+: window(sf::VideoMode(1366, 768), "spacegame", sf::Style::Fullscreen)
 , camera(this, Vector2f(0.0f, 0.0f), Vector2f(0.0f, 0.0f), 1500.0f, 1500.0f, 0.0f, 0.0f)
 , background(this)
 , sys(&this->collisionHandler)
@@ -252,7 +255,9 @@ void Game::Update(const float dt)
 	UpdateGameStatus(dt);
 	UpdateMenu(dt);
 
-	if (this->gameStatus == Status::ActionStatus || this->gameStatus == Status::ExplosionStatus || this->gameStatus == Status::FlyToPortalStatus)
+	if (this->gameStatus == Status::ActionStatus
+        || this->gameStatus == Status::ExplosionStatus
+        || this->gameStatus == Status::FlyToPortalStatus)
 	{
 		if (this->gameStatus == Status::ActionStatus)
 		{
@@ -288,6 +293,7 @@ void Game::Update(const float dt)
 	}
 }
 
+
 void Game::UpdateGameStatus(const float dt)
 {
 	assert(dt >= 0.0f);
@@ -314,6 +320,7 @@ void Game::UpdateGameStatus(const float dt)
 		default:;
 	}
 }
+
 
 void Game::UpdateMenu(const float dt)
 {
@@ -351,7 +358,10 @@ void Game::Render()
 	this->window.clear();
 	this->background.Draw();
 
-	if (this->gameStatus == Status::ActionStatus || this->gameStatus == Status::ExplosionStatus || this->gameStatus == Status::FlyToPortalStatus || this->gameStatus == Status::PauseMenuStatus)
+	if (this->gameStatus == Status::ActionStatus
+        || this->gameStatus == Status::ExplosionStatus
+        || this->gameStatus == Status::FlyToPortalStatus
+        || this->gameStatus == Status::PauseMenuStatus)
 	{
 		const int gameObjCount = this->gameObjects.size();
 		for (int i = 0; i < gameObjCount; i++)
@@ -445,6 +455,7 @@ void Game::Reset()
 	ResetControl();
 }
 
+
 void Game::ResetControl()
 {
 	this->isMovingUp = false;
@@ -462,11 +473,13 @@ void Game::AddGameObject(GameObject* gameObject)
 	this->gameObjects.push_back(gameObject);
 }
 
+
 void Game::SwitchOffGameObject(GameObject* gameObject)
 {
 	assert(gameObject);
 	gameObject->SwitchOff();
 }
+
 
 void Game::SwitchOffAllGameObjects()
 {
@@ -477,6 +490,7 @@ void Game::SwitchOffAllGameObjects()
 		this->gameObjects[i]->SwitchOff();
 	}
 }
+
 
 void Game::RemoveGameObjects()
 {
@@ -498,19 +512,23 @@ void Game::RemoveGameObjects()
 	}
 }
 
+
 void Game::CollapseGameObjects(Vector2f* collisionPoint, GravityObject* gravityObject1, GravityObject* gravityObject2)
 {
 	assert(collisionPoint);
 	assert(gravityObject1 && gravityObject2);
-	AddGameObject(new Explosion(this, *collisionPoint, std::max(gravityObject1->GetRadius(), gravityObject2->GetRadius())));
+	AddGameObject(new Explosion(
+		this, *collisionPoint, std::max(gravityObject1->GetRadius(), gravityObject2->GetRadius())));
 	SwitchOffGameObject((GameObject*)gravityObject1->GetOwner());
 	SwitchOffGameObject((GameObject*)gravityObject2->GetOwner());
 
-	if (gravityObject1->GetType() == (int)GameObject::Type::ShipType || gravityObject2->GetType() == (int)GameObject::Type::ShipType)
+	if (gravityObject1->GetType() == (int)GameObject::Type::ShipType
+        || gravityObject2->GetType() == (int)GameObject::Type::ShipType)
 	{
 		this->gameStatus = Status::ExplosionStatus;
 	}
 }
+
 
 void Game::CollapseGameObject(Vector2f* collisionPoint, GravityObject* gravityObject)
 {
@@ -525,16 +543,19 @@ void Game::CollapseGameObject(Vector2f* collisionPoint, GravityObject* gravityOb
 	}
 }
 
+
 void Game::AddShip(Ship* ship)
 {
 	assert(ship);
 	this->ship = ship;
 }
 
+
 void Game::RemoveShip()
 {
 	this->ship = NULL;
 }
+
 
 void Game::ChangeLevelNumber(int levelNumber)
 {
@@ -542,21 +563,25 @@ void Game::ChangeLevelNumber(int levelNumber)
 	this->currentLevel = levelNumber;
 }
 
+
 int Game::GetLevelNumber()
 {
 	return this->currentLevel;
 }
 
+
 void Game::ChangeGameStatus(Status newStatus)
 {
 	assert(0 <= newStatus && newStatus <= Status::ExplosionStatus);
 
-	if (newStatus == Status::MainMenuStatus || newStatus == Status::ExitStatus || newStatus == Status::WinMenuStatus || newStatus == Status::LoseMenuStatus)
+	if (newStatus == Status::MainMenuStatus || newStatus == Status::ExitStatus
+        || newStatus == Status::WinMenuStatus || newStatus == Status::LoseMenuStatus)
 	{
 		Reset();
 		this->gameInterface.GetGuiWindow()->Show(false);
 	}
-	if (newStatus == Status::ActionStatus || newStatus == Status::ExplosionStatus || newStatus == Status::FlyToPortalStatus)
+	if (newStatus == Status::ActionStatus || newStatus == Status::ExplosionStatus
+        || newStatus == Status::FlyToPortalStatus)
 	{
 		ResetControl();
 		if (this->gameStatus != Status::PauseMenuStatus)
@@ -573,31 +598,37 @@ void Game::ChangeGameStatus(Status newStatus)
 	this->gameStatus = newStatus;
 }
 
+
 void Game::InitFinishPortal(SpaceObject* finishPortal)
 {
 	assert(finishPortal);
 	this->finishPortal = finishPortal;
 }
 
+
 bool Game::IsShowTrajectory()
 {
 	return this->isShowTrajectory;
 }
+
 
 bool Game::IsScalingCameraUp()
 {
 	return this->isScalingCameraUp;
 }
 
+
 bool Game::IsScalingCameraDown()
 {
 	return this->isScalingCameraDown;
 }
 
+
 float Game::GetGameStatusTimer()
 {
 	return this->gameStatusTimer;
 }
+
 
 float Game::GetFuelFraction()
 {
@@ -611,30 +642,36 @@ float Game::GetFuelFraction()
 	}
 }
 
+
 Game::Status Game::GetGameStatus()
 {
 	return this->gameStatus;
 }
+
 
 sf::RenderWindow* Game::GetWindow()
 {
 	return &(this->window);
 }
 
+
 Camera* Game::GetCamera()
 {
 	return &(this->camera);
 }
+
 
 LevelsMenu* Game::GetLevelsMenu()
 {
 	return &(this->levelsMenu);
 }
 
+
 sfg::SFGUI* Game::GetSFGUI()
 {
 	return &(this->sfGUI);
 }
+
 
 GravityObjectSystem* Game::GetGravitySystem()
 {

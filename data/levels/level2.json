@@ -8,7 +8,7 @@
       "acceleration": [ 0.0, 0.0 ],
       "mass": 100000.0,
       "radius": 40.0,
-      "path": "Data/stars/purpleStar.png"
+      "path": "../data/stars/purpleStar.png"
     },
     {
       "type": "star",
@@ -18,7 +18,7 @@
       "acceleration": [ 0.0, 0.0 ],
       "mass": 100000.0,
       "radius": 20.0,
-      "path": "Data/stars/sun.png"
+      "path": "../data/stars/sun.png"
     },
     {
       "type": "planet",
@@ -28,7 +28,7 @@
       "acceleration": [ 0.0, 0.0 ],
       "mass": 10000.0,
       "radius": 10.0,
-      "path": "Data/planets/planet1.png"
+      "path": "../data/planets/planet1.png"
     },
     {
       "type": "portal",
@@ -38,7 +38,7 @@
       "acceleration": [ 0.0, 0.0 ],
       "mass": 1e2,
       "radius": 10.0,
-      "path": "Data/stars/purpleStar.png"
+      "path": "../data/stars/purpleStar.png"
     },
     {
       "type": "ship",
@@ -50,7 +50,7 @@
       "acceleration": [ 0.0, 0.0 ],
       "mass": 1e2,
       "radius": 10.0,
-      "path": "Data/player1.png"
+      "path": "../data/player1.png"
     }
   ]
 }

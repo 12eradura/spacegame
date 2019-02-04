@@ -7,11 +7,14 @@ const float fuelVelocity = 500.0f;
 
 
 
-Ship::Ship(Game* owner, float angle, float fuelMass, Vector2f currPos, Vector2f prevPos, Vector2f acceleration, float mass, float radius, std::string textureFilename)
+Ship::Ship(Game* owner, float angle, float fuelMass,
+           Vector2f currPos, Vector2f prevPos, Vector2f acceleration,
+		   float mass, float radius, std::string textureFilename)
 {
 	assert(owner);
 	this->owner = owner;
-	this->gravityObject = owner->GetGravitySystem()->AddGravityObject(currPos, prevPos, acceleration, mass, radius, (int) GameObject::Type::ShipType, this);
+	this->gravityObject = owner->GetGravitySystem()->AddGravityObject(
+		currPos, prevPos, acceleration, mass, radius, (int) GameObject::Type::ShipType, this);
 	this->angle = angle;
 	this->initialFuelMass = fuelMass;
 	this->fuelMass = fuelMass;
@@ -24,21 +27,25 @@ Ship::Ship(Game* owner, float angle, float fuelMass, Vector2f currPos, Vector2f 
 	owner->AddShip(this);
 }
 
+
 Ship::~Ship()
 {
 	this->owner->RemoveShip();
 	//delete this->gravityObject;
 }
 
+
 float Ship::GetAngle()
 {
 	return this->angle;
 }
 
+
 float Ship::GetFuelFraction()
 {
 	return (this->fuelMass) / (this->initialFuelMass);
 }
+
 
 void Ship::Rotate(const float dAngle)
 {
@@ -58,6 +65,7 @@ void Ship::Rotate(const float dAngle)
 
 	this->angle = fmod(this->angle, 2 * pi);
 }
+
 
 void Ship::Update(const float dt)
 {
@@ -109,10 +117,12 @@ void Ship::SwitchEngine(bool isMovingAhead, bool isMovingBack)
 	}
 }
 
+
 void Ship::CatchByPortal(Vector2f portalPos, const float leftTime, const float dt)
 {
 	assert(leftTime > 0.0f);
-	this->gravityObject->prevPos = (this->gravityObject->currPos - portalPos) * (dt / leftTime) + this->gravityObject->currPos;
+	this->gravityObject->prevPos = (this->gravityObject->currPos - portalPos) * (dt / leftTime)
+	                               + this->gravityObject->currPos;
 	this->gravityObject->acceleration = Vector2f(0.0f, 0.0f);
 	this->status = Status::InPortal;
 }
@@ -158,19 +168,11 @@ void Ship::Draw()
 	{
 		flameSize = Vector2f(0.0f, 0.0f);
 	}
-	this->flameEffect.Render(this->owner->GetWindow(), this->owner->GetCamera(), this->angle, pos - Vector2f(cosf(angle) * size.x * 0.5, -sinf(angle) * size.y * 0.5f), flameSize);
+	this->flameEffect.Render(this->owner->GetWindow(), this->owner->GetCamera(), this->angle, 
+	                         pos - Vector2f(cosf(angle) * size.x * 0.5, -sinf(angle) * size.y * 0.5f),
+							 flameSize);
 	sprite.Draw(this->owner->GetWindow(), pos, angle, size, camera);
 }
-
-
-
-
-
-
-
-
-
-
 
 
 

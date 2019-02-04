@@ -1,15 +1,17 @@
 #include "BlackHole.hpp"
 
+
 BlackHoleEffect::BlackHoleEffect()
 {
-    fireballTex.loadFromFile("../../data/BlackHole.png");
+    fireballTex.loadFromFile("../data/BlackHole.png");
     fireballTex.setSmooth(true);
 
-	shader.loadFromFile("../../data/shader.vert", "../../data/Shaders/BlackHole.frag");
-	shader.setUniform("tex", fireballTex);
+	  shader.loadFromFile("../data/shader.vert", "../data/Shaders/BlackHole.frag");
+	  shader.setUniform("tex", fireballTex);
 
     startTime = currTime = 0.0f;
 }
+
 
 void BlackHoleEffect::Render(sf::RenderWindow *window, Camera* camera, float ang, Vector2f pos, Vector2f size)
 {
@@ -25,21 +27,24 @@ void BlackHoleEffect::Render(sf::RenderWindow *window, Camera* camera, float ang
     //RenderQuad(window, windowCenter, sf::Vector2f(300.0f, 300.0f), &shader);
 }
 
+
 void BlackHoleEffect::Affect()
 {
-  isExploding = 1.0f;
-  startTime = currTime;
+    isExploding = 1.0f;
+    startTime = currTime;
 }
+
 
 void BlackHoleEffect::Reset()
 {
-  startTime = currTime;
-  isExploding = 0.0f;
+    startTime = currTime;
+    isExploding = 0.0f;
 }
+
 
 void BlackHoleEffect::Update(float dt)
 {
-  this->currTime += dt;
+    this->currTime += dt;
 }
 
   

@@ -1,15 +1,17 @@
 #include "Flame.hpp"
 
+
 Flame::Flame()
 {
-	fireballTex.loadFromFile("../../data/Flame.png");
+	fireballTex.loadFromFile("../data/Flame.png");
 	fireballTex.setSmooth(true);
 
-	shader.loadFromFile("../../data/shader.vert", "../../data/Shaders/Flame.frag");
+	shader.loadFromFile("../data/shader.vert", "../data/Shaders/Flame.frag");
 	shader.setUniform("tex", fireballTex);
 
 	startTime = currTime = 0.0f;
 }
+
 
 void Flame::Render(sf::RenderWindow *window, Camera* camera, float ang, Vector2f pos, Vector2f size)
 {
@@ -25,6 +27,7 @@ void Flame::Render(sf::RenderWindow *window, Camera* camera, float ang, Vector2f
 	//RenderQuad(window, windowCenter, sf::Vector2f(300.0f, 300.0f), &shader);
 }
 
+
 void Flame::Affect()
 {
 	isExploding = 1.0f;
@@ -36,6 +39,7 @@ void Flame::Reset()
 	startTime = currTime;
 	isExploding = 0.0f;
 }
+
 
 void Flame::Update(float dt)
 {

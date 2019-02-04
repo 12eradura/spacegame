@@ -120,7 +120,7 @@ vec4 GetFireBallColor(float currTime, vec2 pos, float trailLength, float freqMul
 		//polarPos.x *= 1.0 + 1.0 * exp(-abs(polarPos.x));//0.1 + 0.9 * (1.0 - pow(1.0 - abs(polarPos.x) / pi, 0.5));
 		
 		vec2 planarPos = vec2((polarPos.x + pi) / (2.0 * pi), 1.0 - polarPos.y * 1.0);
-		planarPos.x -= (1.0 - planarPos.y) * 0.1 + pow(1.0 - planarPos.y, 2) * 0.3;
+		planarPos.x -= (1.0 - planarPos.y) * 0.1 + pow(1.0 - planarPos.y, 2.0) * 0.3;
 		//planarPos = pos + vec2(0.5);
 		float intensityMult = (sin(planarPos.x * 15.0) + 1.0) * 0.5;
 		if(planarPos.y > 0.0)

@@ -15,7 +15,7 @@ GameInterface::GameInterface(Game* owner)
 	this->progressBar->SetRequisition(sf::Vector2f(xWindowSize * 0.2f, 25.0f));
 	this->progressBar->SetPosition(sf::Vector2f(xWindowSize * 0.5, xWindowSize * 0.5));
 	
-	this->fuel.loadFromFile("../../data/fuel.png");
+	this->fuel.loadFromFile("../data/fuel.png");
 	
 	sfg::Image::Ptr image = sfg::Image::Create();
 	image->SetImage(fuel);
@@ -38,6 +38,7 @@ GameInterface::GameInterface(Game* owner)
 */
 }
 
+
 void GameInterface::SetProperties()
 {
 	sfg::Context::Get().GetEngine().SetProperty("ProgressBar", "BarBorderWidth", 0.0f);
@@ -46,6 +47,7 @@ void GameInterface::SetProperties()
 	sfg::Context::Get().GetEngine().SetProperty("ProgressBar", "BarColor", sf::Color(39, 174, 96));
 	sfg::Context::Get().GetEngine().SetProperty("ProgressBar", "BackgroundColor", sf::Color(44, 62, 80));
 }
+
 
 void GameInterface::Draw()
 {
@@ -70,6 +72,7 @@ void GameInterface::Draw()
 	this->owner->GetSFGUI()->Display(*this->owner->GetWindow());
 }
 
+
 void GameInterface::Update(float dt)
 {
 	this->guiWindow->Update(dt);
@@ -91,6 +94,7 @@ void GameInterface::Update(float dt)
 	this->progressBar->SetFraction(currFuelFraction);
 //	this->currTimeSpeed = std::trunc(this->owner->GetTimeWarp() * 100.0f) / 100.0f;	
 }
+
 
 sfg::Window::Ptr GameInterface::GetGuiWindow()
 {

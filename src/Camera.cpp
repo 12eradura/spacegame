@@ -8,9 +8,12 @@ extern const float defFov = 400.0f;
 
 
 Camera::Camera()
-{}
+{
+}
 
-Camera::Camera(Game* owner, Vector2f currPos, Vector2f dstPos, float currFov, float dstFov, float currAng, float dstAng)
+
+Camera::Camera(Game* owner, Vector2f currPos, Vector2f dstPos,
+               float currFov, float dstFov, float currAng, float dstAng)
 {
 	this->owner = owner;
 
@@ -20,6 +23,7 @@ Camera::Camera(Game* owner, Vector2f currPos, Vector2f dstPos, float currFov, fl
 	this->currFov = currFov;
 	this->dstFov = dstFov;
 }
+
 
 void Camera::Update(float dt)
 {
@@ -38,38 +42,44 @@ void Camera::Update(float dt)
 	//Scale
 	float diff = dstFov - currFov;
 	this->currFov = dstFov - diff * exp(-alpha * dt);
-
 }
+
 
 void Camera::SetDstCoords(Coords2f newCoords)
 {
 	this->dstCoords = newCoords;
 }
 
+
 void Camera::SetDstPos(Vector2f newPos)
 {
 	this->dstCoords.SetPos(newPos);
 }
+
 
 void Camera::SetDstFov(float newFov)
 {
 	this->dstFov = newFov;
 }
 
+
 float Camera::GetCurrFov()
 {
 	return this->currFov;
 }
+
 
 Vector2f Camera::GetCurrPos()
 {
 	return this->currCoords.GetPos();
 }
 
+
 Coords2f Camera::GetDstCoords()
 {
 	return this->dstCoords;
 }
+
 
 Coords2f Camera::GetCurrCoords()
 {
@@ -82,10 +92,12 @@ Vector2f Camera::ConvertPosToLocal(Vector2f pos)
 	return currCoords.GetLocalPoint(pos);
 }
 
+
 Vector2f Camera::ConvertVectorToLocal(Vector2f vector)
 {
 	return currCoords.GetLocalVector(vector);
 }
+
 
 void Camera::InputHandler()
 {

@@ -21,20 +21,24 @@ Menu::Menu(Game* owner)
 	this->guiWindow = sfg::Window::Create();
 }
 
+
 Menu::~Menu()
 {
 	// nothing
 }
+
 
 sfg::Window::Ptr Menu::GetGuiWindow()
 {
 	return this->guiWindow;
 }
 
+
 void Menu::Update(const float dt)
 {
 	this->guiWindow->Update(dt);
 }
+
 
 void Menu::Render()
 {
@@ -74,6 +78,7 @@ MainMenu::MainMenu(Game* owner) : Menu(owner)
 	this->guiWindow->SetPosition((const sf::Vector2f)this->owner->GetWindow()->getSize() * 0.5f - menuSize * 0.5f);
 }
 
+
 MainMenu::~MainMenu()
 {
 	//nothing have to do
@@ -87,12 +92,12 @@ void MainMenu::SetProperties()
 
 	sfg::Context::Get().GetEngine().SetProperty("Button", "BackgroundColor", sf::Color(52, 73, 94));
 	sfg::Context::Get().GetEngine().SetProperty("Button", "BorderWidth", 0.0f);
-	sfg::Context::Get().GetEngine().SetProperty("Button", "FontName", "../../data/Lato-Medium.ttf");
+	sfg::Context::Get().GetEngine().SetProperty("Button", "FontName", "../data/Lato-Medium.ttf");
 	sfg::Context::Get().GetEngine().SetProperty("Button", "FontSize", 20.0f);
 	sfg::Context::Get().GetEngine().SetProperty("Button:PRELIGHT", "BackgroundColor", sf::Color(22, 160, 133));
 	sfg::Context::Get().GetEngine().SetProperty("Button:ACTIVE", "BackgroundColor", sf::Color(22, 160, 133));
 
-	sfg::Context::Get().GetEngine().SetProperty("Label", "FontName", "../../data/Lato-Medium.ttf");
+	sfg::Context::Get().GetEngine().SetProperty("Label", "FontName", "../data/Lato-Medium.ttf");
 	sfg::Context::Get().GetEngine().SetProperty("Label", "FontSize", 40.0f);
 }
 
@@ -171,10 +176,10 @@ void LevelsMenu::CreateLevel(int levelNumber)
 	this->owner->ChangeGameStatus(Game::Status::ActionStatus);
 	this->owner->AddGameObject(new TrajectoryComputer(this->owner));
 	
-	std::ifstream levelFile("../../data/levels/level" + std::to_string(levelNumber) + ".json");
+	std::ifstream levelFile("../data/levels/level" + std::to_string(levelNumber) + ".json");
 	if (!levelFile.is_open())
 	{
-		std::cout << "Cannot open file " << "../../data/levels/level" + std::to_string(levelNumber) + ".json" << std::endl;
+		std::cout << "Cannot open file " << "../data/levels/level" + std::to_string(levelNumber) + ".json" << std::endl;
 	}
 
 	Json::Reader jsonReader;
@@ -197,19 +202,27 @@ void LevelsMenu::CreateLevel(int levelNumber)
 
 		if (!strcmp(item["type"].asCString(), "ship"))
 		{
-			this->owner->AddGameObject(new Ship(this->owner, item["angle"].asFloat(), item["fuel"].asFloat(), pos, prevPos, acceleration, mass, radius, path));
+			this->owner->AddGameObject(new Ship(
+				this->owner, item["angle"].asFloat(), item["fuel"].asFloat(),
+				pos, prevPos, acceleration, mass, radius, path));
 		}
 		if (!strcmp(item["type"].asCString(), "star"))
 		{
-			this->owner->AddGameObject(new SpaceObject(this->owner, SpaceObject::Star, pos, prevPos, acceleration, mass, radius, path));
+			this->owner->AddGameObject(new SpaceObject(
+				this->owner, SpaceObject::Star,
+				pos, prevPos, acceleration, mass, radius, path));
 		}
 		if (!strcmp(item["type"].asCString(), "planet"))
 		{
-			this->owner->AddGameObject(new SpaceObject(this->owner, SpaceObject::Planet, pos, prevPos, acceleration, mass, radius, path));
+			this->owner->AddGameObject(new SpaceObject(
+				this->owner, SpaceObject::Planet,
+				pos, prevPos, acceleration, mass, radius, path));
 		}
 		if (!strcmp(item["type"].asCString(), "portal"))
 		{
-			this->owner->AddGameObject(new SpaceObject(this->owner, SpaceObject::Portal, pos, prevPos, acceleration, mass, radius, path));
+			this->owner->AddGameObject(new SpaceObject(
+				this->owner, SpaceObject::Portal,
+				pos, prevPos, acceleration, mass, radius, path));
 		}
 	}
 
@@ -265,16 +278,19 @@ PauseMenu::PauseMenu(Game* owner) : Menu(owner)
 	this->guiWindow->SetPosition((const sf::Vector2f)this->owner->GetWindow()->getSize() * 0.5f - menuSize * 0.5f);
 }
 
+
 PauseMenu::~PauseMenu()
 {
 	//nothing have to do
 }
+
 
 void PauseMenu::Resume()
 {
 	this->owner->ChangeGameStatus(Game::Status::ActionStatus);
 	this->guiWindow->Show(false);
 }
+
 
 void PauseMenu::RestartLevel()
 {
@@ -283,6 +299,7 @@ void PauseMenu::RestartLevel()
 	this->owner->GetLevelsMenu()->CreateLevel(this->owner->GetLevelNumber());
 	this->guiWindow->Show(false);
 }
+
 
 void PauseMenu::BackToMainMenu()
 {
@@ -319,10 +336,12 @@ WinMenu::WinMenu(Game* owner) : Menu(owner)
 	this->guiWindow->SetPosition((const sf::Vector2f)this->owner->GetWindow()->getSize() * 0.5f - menuSize * 0.5f);
 }
 
+
 WinMenu::~WinMenu()
 {
 	// nothing
 }
+
 
 void WinMenu::BackToMainMenu()
 {
@@ -362,10 +381,12 @@ LoseMenu::LoseMenu(Game* owner) : Menu(owner)
 	this->guiWindow->SetPosition((const sf::Vector2f)this->owner->GetWindow()->getSize() * 0.5f - menuSize * 0.5f);
 }
 
+
 LoseMenu::~LoseMenu()
 {
 	// nothing
 }
+
 
 void LoseMenu::RestartLevel()
 {
@@ -374,6 +395,7 @@ void LoseMenu::RestartLevel()
 	this->owner->GetLevelsMenu()->CreateLevel(this->owner->GetLevelNumber());
 	this->guiWindow->Show(false);
 }
+
 
 void LoseMenu::BackToMainMenu()
 {

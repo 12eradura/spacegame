@@ -1,6 +1,8 @@
 #include"Sprite.hpp"
 
+
 std::map<std::string, sf::Texture*> Sprite::textures;
+
 
 Sprite::Sprite(std::string filename)
 {
@@ -13,6 +15,7 @@ Sprite::Sprite(std::string filename)
 	//this->tex = new sf::Texture;
 	//this->tex->loadFromFile(filename);
 }
+
 
 void Sprite::Draw(sf::RenderWindow *window, Vector2f pos, float ang, Vector2f size, Camera* camera)
 {

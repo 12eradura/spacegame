@@ -8,7 +8,7 @@
       "acceleration": [ 0.0, 0.0 ],
       "mass": 2e6,
       "radius": 100.0,
-      "path": "Data/stars/blueStar.png"
+      "path": "../data/stars/blueStar.png"
     },
     {
       "type": "planet",
@@ -18,7 +18,7 @@
       "acceleration": [ 0.0, 0.0 ],
       "mass": 1e3,
       "radius": 20.0,
-      "path": "Data/planets/planet1.png"
+      "path": "../data/planets/planet1.png"
     },
     {
       "type": "portal",
@@ -28,7 +28,7 @@
       "acceleration": [ 0.0, 0.0 ],
       "mass": 1e3,
       "radius": 10.0,
-      "path": "Data/planets/planet1.png"
+      "path": "../data/planets/planet1.png"
     },
     {
       "type": "ship",
@@ -40,7 +40,7 @@
       "acceleration": [ 0.0, 0.0 ],
       "mass": 1e2,
       "radius": 10.0,
-      "path": "Data/player1.png"
+      "path": "../data/player1.png"
     }
   ]
 }

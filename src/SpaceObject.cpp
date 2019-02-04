@@ -2,7 +2,10 @@
 #include <assert.h>
 
 
-SpaceObject::SpaceObject(Game* owner, Type type, Vector2f currPos, Vector2f prevPos, Vector2f acceleration, float mass, float radius, std::string textureFilename)
+
+SpaceObject::SpaceObject(Game* owner, Type type,
+                         Vector2f currPos, Vector2f prevPos, Vector2f acceleration,
+                         float mass, float radius, std::string textureFilename)
 {
 	assert(owner);
 	this->owner = owner;
@@ -10,11 +13,15 @@ SpaceObject::SpaceObject(Game* owner, Type type, Vector2f currPos, Vector2f prev
 	this->isExist = true;
 	if (type == Type::Portal)
 	{
-		this->gravityObject = owner->GetGravitySystem()->AddGravityObject(currPos, prevPos, acceleration, mass, radius, (int)GameObject::Type::PortalType, this);
+		this->gravityObject = owner->GetGravitySystem()->AddGravityObject(
+			    currPos, prevPos, acceleration,
+                mass, radius, (int)GameObject::Type::PortalType, this);
 	}
 	else
 	{
-		this->gravityObject = owner->GetGravitySystem()->AddGravityObject(currPos, prevPos, acceleration, mass, radius, (int)GameObject::Type::SpaceObjectType, this);
+		this->gravityObject = owner->GetGravitySystem()->AddGravityObject(
+			    currPos, prevPos, acceleration,
+				mass, radius, (int)GameObject::Type::SpaceObjectType, this);
 	}
 
 	this->sprite = Sprite(textureFilename);
@@ -25,20 +32,24 @@ SpaceObject::SpaceObject(Game* owner, Type type, Vector2f currPos, Vector2f prev
 	}
 }
 
+
 SpaceObject::~SpaceObject()
 {
 	//delete this->gravityObject;
 }
+
 
 SpaceObject::Type SpaceObject::GetType()
 {
 	return this->type;
 }
 
+
 void SpaceObject::SwitchOff()
 {
 	this->isExist = false;
 }
+
 
 void SpaceObject::Drop()
 {
@@ -46,10 +57,12 @@ void SpaceObject::Drop()
 	this->gravityObject = NULL;
 }
 
+
 bool SpaceObject::IsExist()
 {
 	return this->isExist;
 }
+
 
 Vector2f SpaceObject::GetPos()
 {
@@ -64,6 +77,7 @@ void SpaceObject::Update(const float dt)
 		this->blackHoleEffect->Update(dt);
 	}
 }
+
 
 void SpaceObject::Draw()
 {
@@ -84,7 +98,6 @@ void SpaceObject::Draw()
 			size *= 3.10f;
 			this->blackHoleEffect->Render(this->owner->GetWindow(),this->owner->GetCamera(), 0.0f, this->gravityObject->GetPos(), size);
 		break;
-	}
-	
+	}	
 }
 
