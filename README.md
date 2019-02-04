@@ -1,9 +1,7 @@
-# spacegame
-The project that has been made in the 4th term.
-
+# spacegame - how to deal with it
 You should have ```git``` and ```CMake``` to build this project.
 
-## How to deploy it (on Linux):
+## How to build it (on a Linux machine):
 
 #### First of all, clone this repository:
 ```
@@ -14,12 +12,17 @@ git clone https://github.com/codepictor/spacegame.git
 cd spacegame/
 ```
 
-#### Run Cmake (I used cmake-gui)
+#### Run CMake (I used cmake-gui)
 ```
 cmake-gui
 ```
 
 #### Configure the project by specifying required paths
+```
+<configure the project using CMake by specifying paths to SFML and SFGUI>
+<generate necessary files for building>
+<exit cmake-gui>
+```
 
 #### Build using makefile
 ```
