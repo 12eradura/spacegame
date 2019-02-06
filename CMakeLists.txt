@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.2)
 
 project(spacegame VERSION 0.1 DESCRIPTION "a simple space game")
 
-set(SFML_STATIC_LIBRARIES TRUE)
+# set(SFML_STATIC_LIBRARIES TRUE)
 
 # Build dependencies from sources
 add_subdirectory(dependencies/SFGUI-0.4.0)
