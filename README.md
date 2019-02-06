@@ -19,7 +19,7 @@ cmake-gui
 
 #### Configure the project by specifying required paths
 ```
-<configure the project using CMake by specifying paths to SFML and SFGUI>
+<configure the project using CMake by specifying a path to SFML>
 <generate necessary files for building>
 <exit cmake-gui>
 ```

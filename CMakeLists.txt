@@ -1,32 +1,27 @@
 cmake_minimum_required(VERSION 3.2)
 
-project(spacegame)
+project(spacegame VERSION 0.1 DESCRIPTION "a simple space game")
 
-# Bring all files with extension .cpp into the project
+set(SFML_STATIC_LIBRARIES TRUE)
+
+# Build dependencies from sources
+add_subdirectory(dependencies/SFGUI-0.4.0)
+
+# Find SFML library (already done in SFGUI)
+# find_package(SFML 2.5 COMPONENTS graphics window system REQUIRED)
+
+# Bring all files with extension .cpp in src/ into the project
 file(GLOB SOURCES "src/*.cpp")
 
-# Find SFML library
-find_package(SFML 2.5 COMPONENTS graphics window system REQUIRED)
-
-# Ask to specify a path to the binary containing built SFGUI library
-# find_package(SFGUI 0.3.2 REQUIRED)
-find_library(SFGUI_LIBRARY sfgui)
-
-# Ask to specify a path to headers of SFGUI
-set(SFGUI_INCLUDE_DIR "" CACHE FILEPATH "Specify path to SFGUI/Window.hpp, SFGUI/Widget.hpp and other headers of SFGUI")
-
-# Debug output of specified variables
-message("SFGUI_INCLUDE_DIR = " ${SFGUI_INCLUDE_DIR})
-message("SFGUI_LIBRARY = " ${SFGUI_LIBRARY})
-
-# Add all sources to buildingg target
-add_executable(spacegame ${SOURCES} src/json/jsoncpp.cpp)
+# Add all sources to target
+add_executable(spacegame ${SOURCES} dependencies/json/src/jsoncpp.cpp)
 
 # Add paths to includes
-target_include_directories(spacegame PUBLIC ${SFGUI_INCLUDE_DIR})
+target_include_directories(spacegame PUBLIC dependencies/json/include)
+target_include_directories(spacegame PUBLIC dependencies/SFGUI-0.4.0/include)
 target_include_directories(spacegame PUBLIC include)
 
-# Link
-target_link_libraries(spacegame sfml-graphics sfml-window sfml-system ${SFGUI_LIBRARY})
+# Linking
+target_link_libraries(spacegame sfml-graphics sfml-window sfml-system SFGUI)
 
 
