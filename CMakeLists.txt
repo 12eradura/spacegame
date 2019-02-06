@@ -2,13 +2,11 @@ cmake_minimum_required(VERSION 3.2)
 
 project(spacegame VERSION 0.1 DESCRIPTION "a simple space game")
 
-# set(SFML_STATIC_LIBRARIES TRUE)
-
 # Build dependencies from sources
 add_subdirectory(dependencies/SFGUI-0.4.0)
 
-# Find SFML library (already done in SFGUI)
-# find_package(SFML 2.5 COMPONENTS graphics window system REQUIRED)
+# Find SFML library
+find_package(SFML 2.5 COMPONENTS graphics window system REQUIRED)
 
 # Bring all files with extension .cpp in src/ into the project
 file(GLOB SOURCES "src/*.cpp")
