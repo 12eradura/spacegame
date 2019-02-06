@@ -3,7 +3,9 @@ You should have ```git``` and ```CMake``` to build this project.
 
 ## How to build it (on a Linux machine):
 
-#### First of all, clone this repository:
+#### 1. Download SFML 2.5.1
+
+#### 2. Clone this repository:
 ```
 git clone https://github.com/codepictor/spacegame.git
 ```
@@ -12,25 +14,25 @@ git clone https://github.com/codepictor/spacegame.git
 cd spacegame/
 ```
 
-#### Run CMake (I used cmake-gui)
+#### 3. Run CMake (I used cmake-gui)
 ```
 cmake-gui
 ```
 
-#### Configure the project by specifying required paths
+#### 4. Configure the project by specifying required paths
 ```
 <configure the project using CMake by specifying a path to SFML>
 <generate necessary files for building>
 <exit cmake-gui>
 ```
 
-#### Build using makefile
+#### 5. Build using makefile
 ```
 cd bin/
 make -j4
 ```
 
-#### Run the game!
+#### 6. Run the game!
 ```
 ./spacegame
 ```
