@@ -121,10 +121,9 @@ void GravityCollisionHandler::OnCollision(GravityObject* gravityObject1, Gravity
 
 
 
-
 TrajectoryComputer::TrajectoryComputer(Game* owner)
-: computeSys(&this->gravityCollisionHandler)
-, gravityCollisionHandler(this)
+    : computeSys(&this->gravityCollisionHandler)
+    , gravityCollisionHandler(this)
 {
 	Sprite newbie("../data/Trajectory/blueLine.png");
 	sprites.push_back(newbie);

@@ -2,6 +2,9 @@ cmake_minimum_required(VERSION 3.2)
 
 project(spacegame VERSION 0.1 DESCRIPTION "a simple space game")
 
+# Use C++11 standard for compiling
+set(CMAKE_CXX_STANDARD 11)
+
 # Build dependencies from sources
 add_subdirectory(dependencies/SFGUI-0.4.0)
 

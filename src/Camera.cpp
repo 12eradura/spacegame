@@ -4,7 +4,7 @@
 #include <cmath>
 
 
-extern const float defFov = 400.0f;
+extern const float defFov = 1500.0f;
 
 
 Camera::Camera()

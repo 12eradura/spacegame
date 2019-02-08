@@ -35,7 +35,7 @@ private:
 	GravityCollisionHandler gravityCollisionHandler;
 	float dt;
 
-	std::vector <Color> colors;
-	std::vector <Sprite> sprites;
+	std::vector<Color> colors;
+	std::vector<Sprite> sprites;
 	int greenIndex;  // it is index of the ship if collision with portal will occure
 };

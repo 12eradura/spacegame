@@ -7,6 +7,7 @@
 #include "Vector2f.hpp"
 #include <assert.h>
 
+
 const sf::Time timePerFrame = sf::seconds(1.0f / 60.0f);
 const float minTimeWarp = 0.25f;
 const float maxTimeWarp = 2.00f;
@@ -16,12 +17,12 @@ extern const float defFov;
 extern const float gameStatusTimer;
 
 
-// GameObject
+
 GameObject::~GameObject()
 {
 	//std::cout << "destructor gameobject" << std::endl;
 }
-// GameObject
+
 
 
 void Functor::OnCollision(GravityObject* gravityObject1, GravityObject* gravityObject2)
@@ -141,18 +142,18 @@ void CollisionHandler::OnCollision(GravityObject* gravityObject1, GravityObject*
 // Game
 
 Game::Game()
-: window(sf::VideoMode(1366, 768), "spacegame", sf::Style::Fullscreen)
-, camera(this, Vector2f(0.0f, 0.0f), Vector2f(0.0f, 0.0f), 1500.0f, 1500.0f, 0.0f, 0.0f)
-, background(this)
-, sys(&this->collisionHandler)
-, collisionHandler(this)
-, sfGUI()
-, mainMenu(this)
-, levelsMenu(this)
-, pauseMenu(this)
-, winMenu(this)
-, loseMenu(this)
-, gameInterface(this)
+    : window(sf::VideoMode(1366, 768), "spacegame", sf::Style::Fullscreen)
+    , camera(this, Vector2f(0.0f, 0.0f), Vector2f(0.0f, 0.0f), 1500.0f, 1500.0f, 0.0f, 0.0f)
+    , background(this)
+    , sys(&this->collisionHandler)
+    , collisionHandler(this)
+    , sfGUI()
+    , mainMenu(this)
+    , levelsMenu(this)
+    , pauseMenu(this)
+    , winMenu(this)
+    , loseMenu(this)
+    , gameInterface(this)
 {
 	this->window.resetGLStates();
 	this->gameStatusTimer = ::gameStatusTimer;
@@ -162,7 +163,7 @@ Game::Game()
 	this->finishPortal = NULL;
 
 	ResetControl();
-	this->isShowTrajectory = false;
+	this->isShowTrajectory = true;
 }
 
 
@@ -451,7 +452,7 @@ void Game::Reset()
 	this->finishPortal = NULL;
 	this->camera.SetDstFov(defFov);
 
-	this->isShowTrajectory = false;
+	this->isShowTrajectory = true;
 	ResetControl();
 }
 

@@ -50,7 +50,8 @@ void Menu::Render()
 
 // MainMenu
 
-MainMenu::MainMenu(Game* owner) : Menu(owner)
+MainMenu::MainMenu(Game* owner)
+    : Menu(owner)
 {
 	assert(owner);
 	assert(this->guiWindow);
@@ -151,25 +152,30 @@ LevelsMenu::LevelsMenu(Game* owner) : Menu(owner)
 	this->guiWindow->SetPosition((const sf::Vector2f)this->owner->GetWindow()->getSize() * 0.5f - menuSize * 0.5f);
 }
 
+
 LevelsMenu::~LevelsMenu()
 {
 	//nothing have to do
 }
+
 
 void LevelsMenu::CreateLevel1()
 {
 	CreateLevel(1);
 }
 
+
 void LevelsMenu::CreateLevel2()
 {
 	CreateLevel(2);
 }
 
+
 void LevelsMenu::CreateLevel3()
 {
 	CreateLevel(3);
 }
+
 
 void LevelsMenu::CreateLevel(int levelNumber)
 {
@@ -313,14 +319,15 @@ void PauseMenu::BackToMainMenu()
 
 // WinMenu
 
-WinMenu::WinMenu(Game* owner) : Menu(owner)
+WinMenu::WinMenu(Game* owner)
+    : Menu(owner)
 {
-	assert(owner);
-	assert(this->guiWindow);
-	this->guiWindow->SetStyle('b');
-	sfg::Label::Ptr title = sfg::Label::Create();
-	title->SetText("You win!");
-	sfg::Context::Get().GetEngine().SetProperty("Label", "FontSize", 40.0f);
+    assert(owner);
+    assert(this->guiWindow);
+    this->guiWindow->SetStyle('b');
+    sfg::Label::Ptr title = sfg::Label::Create();
+    title->SetText("You win!");
+    sfg::Context::Get().GetEngine().SetProperty("Label", "FontSize", 40.0f);
 	
 	sfg::Button::Ptr buttonMainMenu = sfg::Button::Create("Main menu");
 
