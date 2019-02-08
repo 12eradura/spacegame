@@ -143,7 +143,7 @@ void CollisionHandler::OnCollision(GravityObject* gravityObject1, GravityObject*
 
 Game::Game()
     : window(sf::VideoMode(1366, 768), "spacegame", sf::Style::Fullscreen)
-    , camera(this, Vector2f(0.0f, 0.0f), Vector2f(0.0f, 0.0f), 1500.0f, 1500.0f, 0.0f, 0.0f)
+    , camera(this, Vector2f(0.0f, 0.0f), Vector2f(0.0f, 0.0f), 1000.0f, 1000.0f, 0.0f, 0.0f)
     , background(this)
     , sys(&this->collisionHandler)
     , collisionHandler(this)
@@ -430,6 +430,7 @@ void Game::HandleInput(sf::Keyboard::Key key, bool isPressed)
 			if (isPressed)
 			{
 				this->isShowTrajectory = this->isShowTrajectory ^ true;
+				//this->isShowTrajectory = true;
 			}
 		break;
 
@@ -587,7 +588,7 @@ void Game::ChangeGameStatus(Status newStatus)
 		ResetControl();
 		if (this->gameStatus != Status::PauseMenuStatus)
 		{
-			this->isShowTrajectory = false;
+			this->isShowTrajectory = true;
 		}
 	}
 	if (newStatus == Status::FlyToPortalStatus)

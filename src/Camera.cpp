@@ -4,7 +4,7 @@
 #include <cmath>
 
 
-extern const float defFov = 1500.0f;
+extern const float defFov = 1000.0f;
 
 
 Camera::Camera()
@@ -27,7 +27,7 @@ Camera::Camera(Game* owner, Vector2f currPos, Vector2f dstPos,
 
 void Camera::Update(float dt)
 {
-	float alpha = 1000.0f;
+	float alpha = 200.0f;
 
 	this->InputHandler();
 
