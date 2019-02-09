@@ -2,6 +2,8 @@
 In this game you control a space ship and the main goal is to go into a purple portal.
 Be cautious! The amount of fuel is limited!
 
+![](data/demo2.png)
+
 If you use Windows and don't want to build this game from sources, there is a binary 'spacegame.exe' in bin/ directory (built with static linking).
 Just clone this repository and run it.
 
